@@ -1,6 +1,7 @@
 package bot
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -42,13 +43,24 @@ func (b bot) Updates() <-chan Update {
 	return b.updates
 }
 
+func (b bot) SendMessage(ctx context.Context, params any) error {
+	return nil
+}
+
 type Update struct {
 	Message *Message `json:"message,omitempty"`
 }
 
 type Message struct {
 	Chat *Chat  `json:"chat,omitempty"`
+	From *User  `json:"from,omitempty"`
 	Text string `json:"text,omitempty"`
+}
+
+type User struct {
+	ID        int64  `json:"id,omitempty"`
+	Username  string `json:"username,omitempty"`
+	FirstName string `json:"first_name,omitempty"`
 }
 
 type Chat struct {

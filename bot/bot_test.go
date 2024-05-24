@@ -21,7 +21,7 @@ func TestHandlesWebhook(t *testing.T) {
 
 	update := bot.Update{
 		Message: &bot.Message{
-			Chat: &bot.Chat{
+			From: &bot.User{
 				ID: 123,
 			},
 			Text: "some text",
